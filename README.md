@@ -34,7 +34,7 @@
 
 **Крок 3. Встановіть необхідні бібліотеки**
 Усі залежності встановлюються однією командою:
-`pip install opencv-python mediapipe pygame`
+`pip install opencv-python mediapipe==0.10.14 pygame`
 
 **Крок 4. Запустіть програму**
 `python main.py`
