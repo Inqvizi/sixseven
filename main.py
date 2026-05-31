@@ -22,7 +22,7 @@ is_video_playing = False
 prev_y1, prev_y2 = None, None
 frames_without_movement = 0
 MAX_TOLERANCE_FRAMES = 15
-MOVEMENT_THRESHOLD = 0.005
+MOVEMENT_THRESHOLD = 0.05
 
 
 def is_open_palm(lm):
@@ -72,7 +72,6 @@ while True:
             if cat_video_cap.isOpened():
                 is_video_playing = True
 
-                # ДОДАНО: Завантажуємо і вмикаємо звук (параметр -1 означає "грати по колу")
                 pygame.mixer.music.load(audio_path)
                 pygame.mixer.music.play(-1)
 
@@ -83,12 +82,11 @@ while True:
             if frames_without_movement > MAX_TOLERANCE_FRAMES:
                 is_video_playing = False
 
-                # ДОДАНО: Зупиняємо звук
                 pygame.mixer.music.stop()
 
                 if cat_video_cap:
                     cat_video_cap.release()
-                cv2.destroyWindow("Scubacat")
+                cv2.destroyWindow("Sixseven")
                 print("Рух зупинився: Відео вимкнено")
 
     if is_video_playing and cat_video_cap is not None:
@@ -99,7 +97,7 @@ while True:
 
         if ret_vid:
             cat_frame = cv2.resize(cat_frame, (400, 400))
-            cv2.imshow("Scubacat", cat_frame)
+            cv2.imshow("Sixseven", cat_frame)
 
     cv2.imshow("Main Camera", frame)
 
@@ -108,5 +106,5 @@ while True:
 
 webcam_cap.release()
 if cat_video_cap: cat_video_cap.release()
-pygame.mixer.quit()  # Правильно закриваємо аудіоплеєр
+pygame.mixer.quit()
 cv2.destroyAllWindows()
